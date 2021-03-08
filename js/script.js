@@ -2,7 +2,7 @@ let addBttn = document.getElementById("addbttn");
 let resetBttn = document.getElementById("resetbttn");
 let form = document.querySelector('form');
 let nameList = [];
-nameCount = 1;
+let nameCount = 1;
 
 function addNameCard(){
   let nameInput = document.getElementById("nameinput");
@@ -28,13 +28,13 @@ function addNameCard(){
     let bttnChange = document.createElement("button");
     let bttnReset = document.createElement("button");
 
-    spanDealer.innerHTML = '<label><input type="radio" name="dealer"> Dealer</label>'
-    spanStarter.innerHTML = '<label><input type="radio" name="starter"> Starter</label>'
+    spanDealer.innerHTML = '<label><input type="radio" name="dealer"> Dealer</label>';
+    spanStarter.innerHTML = '<label><input type="radio" name="starter"> Starter</label>';
 
     h2.innerText = sameName(name);
-    close.innerText = "X"
-    bottomDiv.innerText = "Score: "
-    spanScore.innerText = "0"
+    close.innerText = "X";
+    bottomDiv.innerText = "Score: ";
+    spanScore.innerText = "0";
     bttnChange.innerText = "+/-";
     bttn1.innerText = "1";
     bttn2.innerText = "5";
