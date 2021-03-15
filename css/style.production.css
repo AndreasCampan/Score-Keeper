@@ -33,6 +33,7 @@ h2 {
 
 p{
   line-height: 1.2em;
+  padding: 5px 15px;
 }
 
 .container > a {
@@ -80,6 +81,7 @@ p{
 
 .bottom{
   height: 50px;
+  padding-top: 5px;
 }
 
 .dealer, .starter{
@@ -100,6 +102,7 @@ p{
   margin-top: 10px;
   color: rgb(0, 0, 0);
   font-size: 14pt;
+  width: 40px;
 }
 
 .bttngrn{
@@ -122,6 +125,13 @@ p{
 .utilbttn:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.resetbttn {
+  cursor: pointer;
+  padding: 5px 8px;
+  margin-top: 3px;
+  border-radius: 5px;
 }
 
 .ptsbttn{
@@ -193,7 +203,7 @@ ol li:nth-child(even) {
           transform: scale(1.4);
 }
 
-@media all and (max-width: 435px) {
+@media all and (max-width: 450px) {
 
   body {
     font-size: 0.9em;
@@ -225,6 +235,7 @@ ol li:nth-child(even) {
 
   .score{
     font-size: 12pt;
+    margin: 3px 0px;
   }
 
   #nameinput {
@@ -233,6 +244,11 @@ ol li:nth-child(even) {
 
   ol > li {
     padding: 10px 5px;
+  }
+
+  .resetbttn{
+    padding: 3px 4px;
+    margin: 3px 3px;
   }
 
   .ptsbttn{
