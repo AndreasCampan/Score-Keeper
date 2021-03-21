@@ -80,12 +80,16 @@ p{
   margin: 3px 10px 0px 0px;
 }
 
+input[type=radio]:hover, label:hover{
+  cursor: pointer;
+}
+
 .close{
   float: right;
   background: none;
 	border: none;
 	color: #ff3d41;
-
+  cursor: pointer;
 }
 
 .score{
@@ -165,7 +169,6 @@ ol > li {
   color: #000;
   height: auto;
   word-wrap: break-word;
-  cursor: pointer;
 }
 
 ol li:nth-child(even) {
