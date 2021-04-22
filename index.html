@@ -5,22 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <title>Score Keeper</title>
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="css/style.production.css" >
   </head>
   <body>
     <div class="container">
       <a href="about.html">About</a>
-      <h1>Score Keeper v1.3</h1>
+      <h1>Score Keeper v2.0</h1>
       
       <form name="Score" onsubmit="return false;">
         <input type="text" name="list-name" id="nameinput" placeholder="Type a Name..." maxlength="10">
       </form>
 
-      <button class="utilbttn" id="addbttn">Add</button>
-      <ol id="list">
-      </ol>
+      <button id="addbttn">Add</button>
+      <ul id="list">
+      </ul>
     </div>
-    <script src="js/script.js"></script>
+    <script src="js/script.production.js"></script>
   </body>
 </html>
