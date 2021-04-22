@@ -195,7 +195,7 @@ ol li:nth-child(even) {
 }
 
 .footer-logos {
-  width: 40px;
+  width: 55px;
   height: auto;
   margin: 5px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -203,8 +203,8 @@ ol li:nth-child(even) {
 }
 
 .footer-logos:hover {
-  -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 @media all and (max-width: 450px) {
