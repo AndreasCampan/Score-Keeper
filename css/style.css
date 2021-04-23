@@ -142,6 +142,7 @@ input[type=radio]:hover, label:hover {
 
 .score-input {
   width: 80px;
+  margin: 0 3px;
 }
 
 #list{
@@ -203,7 +204,7 @@ ul li:nth-child(even) {
   }
 
   .score {
-    width: 80px;
+    width: 60px;
     overflow: scroll;
     font-size: 0.9em;
   }
@@ -220,8 +221,9 @@ ul li:nth-child(even) {
   .dealer, .starter {
     font-size: 1.1em;
   }
+
   .resetbttn {
-    padding: 3px 4px;
+    padding: 3px 2px;
     font-size: 0.9em;
   }
 
