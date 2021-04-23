@@ -14,4 +14,4 @@ This app was created to help keep score for game nights. The motivation and insp
 **score Input** 
 - Any number up to 7 digits long can be added
 - Decimals can be used
-- To add a negative value, type a minus sign (-) followed by the number
+- To add a negative value, type a minus sign (-) followed by the number or push the red minus sign
