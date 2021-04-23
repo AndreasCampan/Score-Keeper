@@ -113,9 +113,16 @@ input[type=radio]:hover, label:hover {
   border-radius: 5px;
 }
 
-.ptsbttn{
+.minus {
   cursor: pointer;
-  padding: 5px 12px;
+  padding: 0px 3px;
+  border-radius: 5px;
+  background-color: #d45454;
+}
+
+.ptsbttn {
+  cursor: pointer;
+  padding: 3px 7px;
   border-radius: 5px;
   background-color: #72d454;
 }
@@ -134,7 +141,7 @@ input[type=radio]:hover, label:hover {
 }
 
 .score-input {
-  width: 70px;
+  width: 80px;
 }
 
 #list{

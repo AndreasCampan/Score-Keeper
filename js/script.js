@@ -5,20 +5,22 @@ let nameCount = 1;
 
 function addNameCard() {
   const nameInput = document.getElementById('nameinput');
-  let name = nameInput.value;
-  const ol = document.getElementById('list');
-  let points = 0;
+  const ul = document.getElementById('list');
   const topDiv = document.createElement('div');
   const bottomDiv = document.createElement('div');
   const li = document.createElement('li');
   const spanStarter = document.createElement('span');
   const spanDealer = document.createElement('span');
   const spanScore = document.createElement('span');
+  const scoreString = document.createElement('span');
   const close = document.createElement('button');
   const h2 = document.createElement('h2');
   const bttnReset = document.createElement('button');
+  const bttnMinus = document.createElement('button');
   const createnumScore = document.createElement('input');
   const enterbttn = document.createElement('button');
+  let points = 0;
+  let name = nameInput.value;
 
   function sameName() {
     if (nameList.includes(name)) {
@@ -47,27 +49,38 @@ function addNameCard() {
     localpts.innerHTML = points;
   }
 
+  function minus() {
+    const scoreInput = document.getElementById(name + name);
+    console.log(scoreInput);
+    scoreInput.value = '-';
+    console.log('ran');
+  }
+
   function submitScore() {
     const localpts = document.getElementById(name);
-    let numlocalpts = parseFloat(localpts.innerText, 10);
-    const scoreInput = document.getElementById(name + name).valueAsNumber;
+    const scoreInput = document.getElementById(name + name).value;
     const scoreLength = document.getElementById(name + name).value;
-    const numScore = parseFloat(scoreInput, 10);
 
-    if (!numScore) {
-      alert('Please enter a number!');
-    } else if (typeof numScore === 'number' && numlocalpts === 0 && scoreLength.length <= 7) {
-      console.log('=== 0');
-      numlocalpts = numScore;
-      localpts.innerText = numlocalpts;
-    } else if (typeof numScore === 'number' && numlocalpts !== 0 && scoreLength.length <= 7) {
-      console.log('!== 0');
-      numlocalpts += numScore;
-      localpts.innerText = numlocalpts;
-    } else if (scoreLength.length > 7) {
-      alert('Score input cannot exceed 7 digits');
+    if (!/[^a-zA-Z]+$/.test(scoreInput)) {
+      console.log('Please insert a valid number');
     } else {
-      alert('Something is not right!');
+      const numScore = parseFloat(scoreInput, 10);
+      let numlocalpts = parseFloat(localpts.innerText, 10);
+      if (!numScore) {
+        alert('Please enter a number!');
+      } else if (numlocalpts === 0 && scoreLength.length <= 7) {
+        console.log('=== 0');
+        numlocalpts = numScore;
+        localpts.innerText = numlocalpts;
+      } else if (numlocalpts !== 0 && scoreLength.length <= 7) {
+        console.log('!== 0');
+        numlocalpts += numScore;
+        localpts.innerText = numlocalpts;
+      } else if (scoreLength.length > 7) {
+        alert('Score input cannot exceed 7 digits');
+      } else {
+        alert('Something is not right!');
+      }
     }
   }
 
@@ -79,10 +92,11 @@ function addNameCard() {
 
     h2.innerText = sameName(name);
     close.innerText = 'X';
-    bottomDiv.innerText = 'Score: ';
     spanScore.innerText = '0';
     enterbttn.innerText = 'Enter';
     bttnReset.innerText = 'Reset';
+    bttnMinus.innerText = '-';
+    scoreString.innerText = 'Score:';
 
     topDiv.classList.add('top');
     bottomDiv.classList.add('bottom');
@@ -94,26 +108,30 @@ function addNameCard() {
     createnumScore.classList.add('score-input');
     enterbttn.classList.add('ptsbttn');
     spanScore.classList.add('score');
+    bttnMinus.classList.add('minus');
     spanScore.setAttribute('id', name);
-    createnumScore.setAttribute('type', 'number');
+    createnumScore.setAttribute('type', 'text');
     createnumScore.setAttribute('id', name + name);
     createnumScore.setAttribute('placeholder', '0');
 
     topDiv.appendChild(h2);
-
     topDiv.appendChild(spanDealer);
     topDiv.appendChild(spanStarter);
+    topDiv.appendChild(close);
     li.appendChild(topDiv);
-    bottomDiv.appendChild(spanScore);
     bottomDiv.appendChild(bttnReset);
+    bottomDiv.appendChild(scoreString);
+    bottomDiv.appendChild(spanScore);
+    bottomDiv.appendChild(bttnMinus);
     bottomDiv.appendChild(createnumScore);
     bottomDiv.appendChild(enterbttn);
 
     li.appendChild(bottomDiv);
-    ol.appendChild(li);
+    ul.appendChild(li);
 
     close.addEventListener('click', delItem);
     bttnReset.addEventListener('click', reset);
+    bttnMinus.addEventListener('click', minus);
     enterbttn.addEventListener('click', submitScore);
     createnumScore.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
