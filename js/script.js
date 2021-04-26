@@ -1,24 +1,35 @@
-const addBttn = document.getElementById('addbttn');
+const playerBttn = document.getElementById('playerBttn');
 const form = document.querySelector('form');
 let nameList = [];
 let nameCount = 1;
 
 function addNameCard() {
-  const nameInput = document.getElementById('nameinput');
-  const ul = document.getElementById('list');
-  const topDiv = document.createElement('div');
-  const bottomDiv = document.createElement('div');
   const li = document.createElement('li');
+
+  const topDiv = document.createElement('div');
   const spanStarter = document.createElement('span');
   const spanDealer = document.createElement('span');
-  const spanScore = document.createElement('span');
-  const scoreString = document.createElement('span');
   const close = document.createElement('button');
   const h2 = document.createElement('h2');
-  const bttnReset = document.createElement('button');
-  const bttnMinus = document.createElement('button');
-  const createnumScore = document.createElement('input');
+
+  const midDiv = document.createElement('div');
   const enterbttn = document.createElement('button');
+  const scrReset = document.createElement('button');
+  const bttnMinus = document.createElement('button');
+  const createNumScore = document.createElement('input');
+  const spanScore = document.createElement('span');
+  const scoreString = document.createElement('span');
+
+  const mid2Div = document.createElement('div');
+  const miscReset = document.createElement('button');
+  const miscInput = document.createElement('input');
+  const addMisc = document.createElement('button');
+
+  const bottomDiv = document.createElement('div');
+  const miscList = document.createElement('div');
+
+  const nameInput = document.getElementById('nameinput');
+  const ul = document.getElementById('list');
   let points = 0;
   let name = nameInput.value;
 
@@ -43,23 +54,41 @@ function addNameCard() {
     }
   }
 
-  function reset() {
+  function resetScore() {
     const localpts = document.getElementById(name);
     points = 0;
     localpts.innerHTML = points;
   }
 
+  function resetMisc() {
+    const resetmisc = document.getElementById(`list${name}`);
+    resetmisc.innerText = '';
+  }
+
   function minus() {
-    const scoreInput = document.getElementById(name + name);
+    const scoreInput = document.getElementById(`${name}num`);
     console.log(scoreInput);
     scoreInput.value = '-';
     console.log('ran');
   }
 
+  function submitMisc() {
+    const miscInputBox = document.getElementById(`misc${name}`);
+    const miscValue = miscInputBox.value;
+    const miscListBox = document.getElementById(`list${name}`);
+    if (miscValue) {
+      miscListBox.innerText += `${miscValue},  `;
+      miscInputBox.value = '';
+    } else {
+      alert('Please enter a game call');
+    }
+  }
+
   function submitScore() {
     const localpts = document.getElementById(name);
-    const scoreInput = document.getElementById(name + name).value;
-    const scoreLength = document.getElementById(name + name).value;
+    const scoreInputBox = document.getElementById(`${name}num`);
+    const scoreInput = document.getElementById(`${name}num`).value;
+    const scoreLength = document.getElementById(`${name}num`).value;
 
     if (!/[^a-zA-Z]+$/.test(scoreInput)) {
       console.log('Please insert a valid number');
@@ -72,10 +101,12 @@ function addNameCard() {
         console.log('=== 0');
         numlocalpts = numScore;
         localpts.innerText = numlocalpts;
+        scoreInputBox.value = '';
       } else if (numlocalpts !== 0 && scoreLength.length <= 7) {
         console.log('!== 0');
         numlocalpts += numScore;
         localpts.innerText = numlocalpts;
+        scoreInputBox.value = '';
       } else if (scoreLength.length > 7) {
         alert('Score input cannot exceed 7 digits');
       } else {
@@ -87,55 +118,80 @@ function addNameCard() {
   if (name === '') {
     alert('Please Enter a Name');
   } else {
-    spanDealer.innerHTML = '<input type="radio" name="dealer"> Dealer';
-    spanStarter.innerHTML = '<input type="radio" name="starter"> Starter';
-
-    h2.innerText = sameName(name);
-    close.innerText = 'X';
-    spanScore.innerText = '0';
-    enterbttn.innerText = 'Enter';
-    bttnReset.innerText = 'Reset';
-    bttnMinus.innerText = '-';
-    scoreString.innerText = 'Score:';
-
     topDiv.classList.add('top');
-    bottomDiv.classList.add('bottom');
+    h2.innerText = sameName(name);
     spanDealer.classList.add('dealer');
+    spanDealer.innerHTML = '<input type="radio" name="dealer"> Dealer';
     spanStarter.classList.add('starter');
+    spanStarter.innerHTML = '<input type="radio" name="starter"> Starter';
     close.classList.add('close');
-    bottomDiv.classList.add('bottom');
-    bttnReset.classList.add('resetbttn');
-    createnumScore.classList.add('score-input');
-    enterbttn.classList.add('ptsbttn');
+    close.innerText = 'X';
+
+    midDiv.classList.add('mid');
+    scrReset.classList.add('resetbttn');
+    scrReset.innerText = 'Rst';
+    scoreString.innerText = 'Score:';
+    createNumScore.classList.add('score-input');
+    enterbttn.classList.add('enterbttn');
+    enterbttn.innerText = 'Add';
     spanScore.classList.add('score');
+    spanScore.innerText = '0';
     bttnMinus.classList.add('minus');
+    bttnMinus.innerText = '-';
     spanScore.setAttribute('id', name);
-    createnumScore.setAttribute('type', 'text');
-    createnumScore.setAttribute('id', name + name);
-    createnumScore.setAttribute('placeholder', '0');
+    createNumScore.setAttribute('type', 'text');
+    createNumScore.setAttribute('id', `${name}num`);
+    createNumScore.setAttribute('placeholder', '0');
+
+    mid2Div.classList.add('mid2');
+    miscReset.classList.add('resetbttn');
+    miscReset.innerText = 'Clear';
+    miscInput.classList.add('misc-input');
+    miscInput.setAttribute('type', 'text');
+    miscInput.setAttribute('id', `misc${name}`);
+    miscInput.setAttribute('placeholder', 'Miscellaneous');
+    addMisc.classList.add('enterbttn');
+    addMisc.innerText = 'Submit';
+
+    bottomDiv.classList.add('bottomDiv');
+    miscList.classList.add('misc-List');
+    miscList.setAttribute('id', `list${name}`);
 
     topDiv.appendChild(h2);
     topDiv.appendChild(spanDealer);
     topDiv.appendChild(spanStarter);
     topDiv.appendChild(close);
-    li.appendChild(topDiv);
-    bottomDiv.appendChild(bttnReset);
-    bottomDiv.appendChild(scoreString);
-    bottomDiv.appendChild(spanScore);
-    bottomDiv.appendChild(bttnMinus);
-    bottomDiv.appendChild(createnumScore);
-    bottomDiv.appendChild(enterbttn);
+    midDiv.appendChild(scrReset);
+    midDiv.appendChild(scoreString);
+    midDiv.appendChild(spanScore);
+    midDiv.appendChild(bttnMinus);
+    midDiv.appendChild(createNumScore);
+    midDiv.appendChild(enterbttn);
+    mid2Div.appendChild(miscReset);
+    mid2Div.appendChild(miscInput);
+    mid2Div.appendChild(addMisc);
+    bottomDiv.appendChild(miscList);
 
+    li.appendChild(topDiv);
+    li.appendChild(midDiv);
+    li.appendChild(mid2Div);
     li.appendChild(bottomDiv);
     ul.appendChild(li);
 
     close.addEventListener('click', delItem);
-    bttnReset.addEventListener('click', reset);
+    scrReset.addEventListener('click', resetScore);
     bttnMinus.addEventListener('click', minus);
     enterbttn.addEventListener('click', submitScore);
-    createnumScore.addEventListener('keydown', (e) => {
+    miscReset.addEventListener('click', resetMisc);
+    addMisc.addEventListener('click', submitMisc);
+    createNumScore.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         submitScore();
+      }
+    });
+    miscInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        submitMisc();
       }
     });
   }
@@ -169,4 +225,4 @@ function addNameCard() {
 }
 
 form.addEventListener('submit', addNameCard);
-addBttn.addEventListener('click', addNameCard);
+playerBttn.addEventListener('click', addNameCard);
